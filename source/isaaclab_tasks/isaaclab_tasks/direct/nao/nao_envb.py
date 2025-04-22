@@ -79,15 +79,15 @@ class NaoEnvbCfg(DirectRLEnvCfg):
                 "RKneePitch": 0.5,
                 "RAnklePitch": -0.5,
                 "RAnkleRoll": 0.0,
-                "LShoulderPitch": 1.7,
+                "LShoulderPitch": 1.0,
                 "LShoulderRoll": 0.5,
-                "LElbowYaw": -1.5,
-                "LElbowRoll": -0.05,
+                "LElbowYaw": 0.5,
+                "LElbowRoll": -1.0,
                 "LWristYaw": 0.0,
-                "RShoulderPitch": 1.7,
+                "RShoulderPitch": 1.0,
                 "RShoulderRoll": -0.5,
-                "RElbowYaw": 1.5,
-                "RElbowRoll": 0.05,
+                "RElbowYaw": 0.5,
+                "RElbowRoll": 1.0,
                 "RWristYaw": 0.0,
                 "LHand": 0.0,
                 "RHand": 0.0,
@@ -109,7 +109,7 @@ class NaoEnvbCfg(DirectRLEnvCfg):
                 "RThumb2": 0.0,
             },
             # pos=(1.0, 0.0, 0.00),  # Position of the robot in the environment
-            pos=(1.0, 0.0, 0.345),  # Position of the robot in the environment
+            pos=(1.0, 0.0, 0.30),  # Position of the robot in the environment
             rot=(0.0, 0.0, 0.0, 1.0),  # Orientation of the robot (quaternion)
         ),
         actuators={
@@ -119,10 +119,10 @@ class NaoEnvbCfg(DirectRLEnvCfg):
                     "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll",
                     "RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll"
                 ],
-                effort_limit_sim=50.0,
-                velocity_limit_sim=1.5,
+                effort_limit=50.0,
+                velocity_limit=1.5,
                 stiffness=80.0,
-                damping=10.0,
+                damping=4.0,
             ),
             "Nao_legs": ImplicitActuatorCfg(
                 joint_names_expr=[
@@ -130,15 +130,15 @@ class NaoEnvbCfg(DirectRLEnvCfg):
                     "LAnklePitch", "LAnkleRoll", "RHipYawPitch", "RHipRoll",
                     "RHipPitch", "RKneePitch", "RAnklePitch", "RAnkleRoll"
                 ],
-                effort_limit_sim=40.0,
-                velocity_limit_sim=1.5,
+                effort_limit=40.0,
+                velocity_limit=1.5,
                 stiffness=70.0,
-                damping=10.0,
+                damping=3.0,
             ),
             "Nao_head": ImplicitActuatorCfg(
                 joint_names_expr=["HeadYaw", "HeadPitch"],
-                effort_limit_sim=10.0,
-                velocity_limit_sim=1.0,
+                effort_limit=10.0,
+                velocity_limit=1.0,
                 stiffness=100.0,
                 damping=5.0,
             ),
@@ -150,8 +150,8 @@ class NaoEnvbCfg(DirectRLEnvCfg):
                     "LThumb2", "RThumb2", "LFinger13", "LFinger23",
                     "RFinger13", "RFinger23", "LWristYaw", "RWristYaw"
                 ],
-                effort_limit_sim=5.0,
-                velocity_limit_sim=1.0,
+                effort_limit=5.0,
+                velocity_limit=1.0,
                 stiffness=50.0,
                 damping=2.0,
             ),
@@ -215,10 +215,10 @@ class NaoEnvbCfg(DirectRLEnvCfg):
     dof_vel_scale: float = 0.1
 
     death_cost: float = -1.0
-    termination_height: float = 0.2
+    termination_height: float = 0.8
 
-    angular_velocity_scale: float = 0.00000025
-    contact_force_scale: float = 0.001
+    angular_velocity_scale: float = 0.25
+    contact_force_scale: float = 0.01
 
 
 

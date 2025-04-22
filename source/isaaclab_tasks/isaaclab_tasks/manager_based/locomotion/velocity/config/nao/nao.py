@@ -16,14 +16,19 @@ from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 # Configuration
 ##
 
-NAO_CFG = ArticulationCfg(
+NAO_MINIMAL_CFG = ArticulationCfg(
     prim_path="{ENV_REGEX_NS}/Robot",
     spawn=sim_utils.UsdFileCfg(
         usd_path=f"C:/Users/reill/IsaacLab/nao/nao2/nao_nohands.usd",  # Path to NAO USD file
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
-            disable_gravity=False,
-            max_depenetration_velocity=5.0,  # Lower for smaller robot
             enable_gyroscopic_forces=True,
+            disable_gravity=False,
+            retain_accelerations=False,
+            linear_damping=0.0,
+            angular_damping=0.0,
+            max_linear_velocity=1000.0,
+            max_angular_velocity=1000.0,
+            max_depenetration_velocity=1.0,
         ),
         articulation_props=sim_utils.ArticulationRootPropertiesCfg(
             enabled_self_collisions=False,
@@ -33,6 +38,7 @@ NAO_CFG = ArticulationCfg(
             stabilization_threshold=0.001,
         ),
         copy_from_source=False,
+        activate_contact_sensors=True,
     ),
     init_state=ArticulationCfg.InitialStateCfg(
         pos=(0.0, 0.0, 0.345),  # NAO is about 58cm tall, starting with feet on ground
@@ -81,18 +87,18 @@ NAO_CFG = ArticulationCfg(
                 "LAnklePitch", "LAnkleRoll", "RHipYawPitch", "RHipRoll",
                 "RHipPitch", "RKneePitch", "RAnklePitch", "RAnkleRoll"
             ],
-            effort_limit=40.0,
-            velocity_limit=1.5,
-            stiffness=70.0,
+            effort_limit=100.0,
+            velocity_limit=3,
+            stiffness=120.0,
             damping=3.0,
         ),
-        "Nao_head": ImplicitActuatorCfg(
-            joint_names_expr=["HeadYaw", "HeadPitch"],
-            effort_limit=10.0,
-            velocity_limit=1.0,
-            stiffness=100.0,
-            damping=5.0,
-        ),
+        # "Nao_head": ImplicitActuatorCfg(
+        #     joint_names_expr=["HeadYaw", "HeadPitch"],
+        #     effort_limit=10.0,
+        #     velocity_limit=1.0,
+        #     stiffness=100.0,
+        #     damping=5.0,
+        # ),
         # "Nao_hands": ImplicitActuatorCfg(
         #     joint_names_expr=[
         #         "LHand", "RHand", "LFinger11", "RFinger11",

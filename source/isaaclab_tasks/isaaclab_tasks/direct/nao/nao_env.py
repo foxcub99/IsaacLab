@@ -64,48 +64,48 @@ class NaoEnvCfg(DirectRLEnvCfg):  # Rename class to reflect NAO robot
         # Left arm joints
         1.0,  # LShoulderPitch
         1.0,  # LShoulderRoll
-        1.0,  # LElbowYaw
-        1.0,  # LElbowRoll
-        1.0,  # LWristYaw
+        0.5,  # LElbowYaw
+        0.5,  # LElbowRoll
+        0.01,  # LWristYaw
         
         # Left hand joints (if included)
-        # 5.0,   # LHand
+        # 1.0,   # LHand
         
         # Right arm joints
         1.0,  # RShoulderPitch
         1.0,  # RShoulderRoll
-        1.0,  # RElbowYaw
-        1.0,  # RElbowRoll
-        1.0,  # RWristYaw
+        0.5,  # RElbowYaw
+        0.5,  # RElbowRoll
+        0.01,  # RWristYaw
         
         # Right hand joints (if included)
-        # 5.0,   # RHand
+        # 1.0,   # RHand
         
         # Left leg joints
-        1.0,  # LHipYawPitch
-        1.0,  # LHipRoll
-        1.0, # LHipPitch
-        1.0,  # LKneePitch
-        1.0,  # LAnklePitch
-        1.0,  # LAnkleRoll
+        2.0,  # LHipYawPitch
+        2.0,  # LHipRoll
+        2.0, # LHipPitch
+        2.0,  # LKneePitch
+        2.0,  # LAnklePitch
+        2.0,  # LAnkleRoll
         
         # Right leg joints
-        1.0,  # RHipYawPitch
-        1.0,  # RHipRoll
-        1.0, # RHipPitch
-        1.0,  # RKneePitch
-        1.0,  # RAnklePitch
-        1.0,  # RAnkleRoll
+        2.0,  # RHipYawPitch
+        2.0,  # RHipRoll
+        2.0, # RHipPitch
+        2.0,  # RKneePitch
+        2.0,  # RAnklePitch
+        2.0,  # RAnkleRoll
     ]
 
     # Reward weights adjusted for NAO
-    heading_weight: float = 1.0
-    up_weight: float = 0.1  # Increased slightly as balance is more critical for NAO
+    heading_weight: float = 3.0
+    up_weight: float = 0.05  # Increased slightly as balance is more critical for NAO
 
     energy_cost_scale: float = 0.05
     actions_cost_scale: float = 0.01
-    alive_reward_scale: float = 2.0  # Increased to encourage stable postures
-    dof_vel_scale: float = 0.1
+    alive_reward_scale: float = 0.5  # Increased to encourage stable postures
+    dof_vel_scale: float = 0.03
 
     death_cost: float = -1.0
     termination_height: float = 0.25  # Reduced for NAO's smaller height (about 58cm tall)
